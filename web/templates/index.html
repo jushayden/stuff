@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Robot Map Control</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div id="panel">
+    <div class="row">
+      <input id="origin" placeholder="Origin address or click map" />
+      <input id="destination" placeholder="Destination address or click map" />
+    </div>
+    <div class="row">
+      <select id="mode">
+        <option value="DRIVING">Driving</option>
+        <option value="WALKING">Walking</option>
+        <option value="BICYCLING">Bicycling</option>
+      </select>
+      <button id="btnPickStart">Pick Start</button>
+      <button id="btnPickEnd">Pick End</button>
+      <button id="btnAddWp">Add Waypoint</button>
+      <button id="btnRoute">Route</button>
+      <button id="btnStartMission">Start Mission</button>
+    </div>
+    <div class="row small" id="msg"></div>
+    <div class="row stats">
+      <span>Battery: <b id="tBattery">--</b></span>
+      <span>Mode: <b id="tMode">--</b></span>
+      <span>Speed: <b id="tSpeed">--</b></span>
+      <span>Pos: <b id="tPos">--</b></span>
+    </div>
+  </div>
+
+  <div id="map"></div>
+
+  <!-- Socket.IO browser client (v4) -->
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" integrity="sha384-n4E9rJxF9rZyOwxO/4s1xT6HcPY3h9p7Qv0hXv1s9Yq0JcG3t2qZpHhN8z+R5i8h" crossorigin="anonymous"></script>
+
+  <!-- Your app logic -->
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+
+  <!-- Google Maps JS (browser key), geometry lib for distances -->
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&libraries=geometry,places&v=weekly&callback=initMap">
+  </script>
+</body>
+</html>
